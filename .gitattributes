@@ -1,0 +1,16 @@
+# Ensure shell scripts have LF line endings on checkout (critical for Linux/Render)
+*.sh text eol=lf
+bin/* text eol=lf
+Procfile text eol=lf
+
+# Ruby files
+*.rb text
+*.yml text
+*.yaml text
+*.json text
+*.html text
+*.css text
+*.js text
+
+# Keep these as-is
+*.sqlite3 binary

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Render.com 빌드 스크립트
-# 이 스크립트는 배포 시 자동으로 실행됩니다.
 set -o errexit
 
 echo "=== [1/4] Installing gems ==="
