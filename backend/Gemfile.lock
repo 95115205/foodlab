@@ -150,6 +150,8 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
+    nokogiri (1.19.1-aarch64-linux-gnu)
+      racc (~> 1.4)
     nokogiri (1.19.1-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.19.1-x86_64-linux-gnu)
@@ -214,6 +216,7 @@ GEM
     reline (0.6.3)
       io-console (~> 0.5)
     securerandom (0.4.1)
+    sqlite3 (2.9.0-aarch64-linux-gnu)
     sqlite3 (2.9.0-x64-mingw-ucrt)
     sqlite3 (2.9.0-x86_64-linux-gnu)
     sshkit (1.25.0)
@@ -226,6 +229,7 @@ GEM
     stringio (3.2.0)
     thor (1.5.0)
     thruster (0.1.18)
+    thruster (0.1.18-aarch64-linux)
     thruster (0.1.18-x86_64-linux)
     timeout (0.6.0)
     tsort (0.2.0)
@@ -242,6 +246,7 @@ GEM
     zeitwerk (2.7.5)
 
 PLATFORMS
+  aarch64-linux
   x64-mingw-ucrt
   x86_64-linux
 
