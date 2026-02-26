@@ -1,16 +1,14 @@
 # =====================================================
 # 식재료LAB — Render.com Blueprint (원클릭 배포)
 # =====================================================
-# 이 파일은 Render.com에서 자동으로 인식하여
-# 서비스를 생성합니다.
 
 services:
   - type: web
     name: foodlab
     runtime: ruby
-    region: singapore  # 한국에서 가장 가까운 Render 리전
+    region: singapore
     plan: free
-    buildCommand: "./bin/render-build.sh"
+    buildCommand: "bundle install && (bundle exec rails db:migrate 2>/dev/null || true) && (bundle exec bootsnap precompile app/ lib/ 2>/dev/null || true)"
     startCommand: "bundle exec puma -C config/puma.rb"
     rootDir: backend
     envVars:
@@ -21,7 +19,7 @@ services:
       - key: RAILS_LOG_TO_STDOUT
         value: "true"
       - key: SECRET_KEY_BASE
-        generateValue: true  # Render가 자동 생성
+        generateValue: true
       - key: USDA_API_KEY
         value: DEMO_KEY
       - key: ALLOWED_ORIGINS
