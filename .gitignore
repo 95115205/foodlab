@@ -1,0 +1,50 @@
+# .gitignore — 식재료LAB
+
+# Ruby / Rails
+*.gem
+*.rbc
+.bundle
+vendor/bundle
+log/*.log
+tmp/
+storage/*.sqlite3
+
+# Kamal secrets (NEVER commit!)
+.kamal/secrets
+backend/.kamal/secrets
+
+# Docker
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+dist/
+
+# Keys & Credentials
+*.pem
+*.key
+config/master.key
+config/credentials.yml.enc
+backend/config/master.key
+backend/config/credentials.yml.enc
+
+# Unnecessary directories
+backend_rack_backup/
+api_server/
+
+# Oracle Cloud (replaced by Render)
+oracle_cloud_setup.md
+backend/config/deploy.yml
+
+# Logs
+backend/log/

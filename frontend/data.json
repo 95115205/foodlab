@@ -1,0 +1,533 @@
+{
+  "apple": {
+    "name": "사과",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(사과)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[사과] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 9.2 g",
+      "지방: 10.9 g",
+      "탄수화물: 17.0 g",
+      "열량(에너지): 98.3 kcal",
+      "당류: 5.1 g",
+      "나트륨: 240.7 mg",
+      "콜레스테롤: 76.3 mg",
+      "포화지방: 7.61 g",
+      "트랜스지방: 0.59 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 9.2
+      },
+      {
+        "label": "지방",
+        "value": 10.9
+      },
+      {
+        "label": "탄수화물",
+        "value": 17.0
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 98.3
+      },
+      {
+        "label": "당류",
+        "value": 5.1
+      },
+      {
+        "label": "나트륨",
+        "value": 240.7
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 76.3
+      },
+      {
+        "label": "포화지방",
+        "value": 7.61
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.59
+      }
+    ]
+  },
+  "beef": {
+    "name": "소고기",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(소고기)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[소고기] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 8.3 g",
+      "지방: 6.0 g",
+      "탄수화물: 19.9 g",
+      "열량(에너지): 189.6 kcal",
+      "당류: 2.3 g",
+      "나트륨: 113.0 mg",
+      "콜레스테롤: 12.5 mg",
+      "포화지방: 8.54 g",
+      "트랜스지방: 0.59 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 8.3
+      },
+      {
+        "label": "지방",
+        "value": 6.0
+      },
+      {
+        "label": "탄수화물",
+        "value": 19.9
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 189.6
+      },
+      {
+        "label": "당류",
+        "value": 2.3
+      },
+      {
+        "label": "나트륨",
+        "value": 113.0
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 12.5
+      },
+      {
+        "label": "포화지방",
+        "value": 8.54
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.59
+      }
+    ]
+  },
+  "pork": {
+    "name": "돼지고기",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(돼지고기)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[돼지고기] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 10.8 g",
+      "지방: 10.6 g",
+      "탄수화물: 5.7 g",
+      "열량(에너지): 249.9 kcal",
+      "당류: 12.3 g",
+      "나트륨: 247.9 mg",
+      "콜레스테롤: 54.4 mg",
+      "포화지방: 8.97 g",
+      "트랜스지방: 0.45 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 10.8
+      },
+      {
+        "label": "지방",
+        "value": 10.6
+      },
+      {
+        "label": "탄수화물",
+        "value": 5.7
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 249.9
+      },
+      {
+        "label": "당류",
+        "value": 12.3
+      },
+      {
+        "label": "나트륨",
+        "value": 247.9
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 54.4
+      },
+      {
+        "label": "포화지방",
+        "value": 8.97
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.45
+      }
+    ]
+  },
+  "strawberry": {
+    "name": "딸기",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(딸기)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[딸기] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 8.5 g",
+      "지방: 4.1 g",
+      "탄수화물: 12.1 g",
+      "열량(에너지): 139.7 kcal",
+      "당류: 6.0 g",
+      "나트륨: 118.9 mg",
+      "콜레스테롤: 34.2 mg",
+      "포화지방: 3.55 g",
+      "트랜스지방: 0.98 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 8.5
+      },
+      {
+        "label": "지방",
+        "value": 4.1
+      },
+      {
+        "label": "탄수화물",
+        "value": 12.1
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 139.7
+      },
+      {
+        "label": "당류",
+        "value": 6.0
+      },
+      {
+        "label": "나트륨",
+        "value": 118.9
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 34.2
+      },
+      {
+        "label": "포화지방",
+        "value": 3.55
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.98
+      }
+    ]
+  },
+  "pepper": {
+    "name": "후추",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(후추)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[후추] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 4.2 g",
+      "지방: 8.3 g",
+      "탄수화물: 9.8 g",
+      "열량(에너지): 35.6 kcal",
+      "당류: 9.5 g",
+      "나트륨: 219.5 mg",
+      "콜레스테롤: 75.8 mg",
+      "포화지방: 6.77 g",
+      "트랜스지방: 0.03 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 4.2
+      },
+      {
+        "label": "지방",
+        "value": 8.3
+      },
+      {
+        "label": "탄수화물",
+        "value": 9.8
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 35.6
+      },
+      {
+        "label": "당류",
+        "value": 9.5
+      },
+      {
+        "label": "나트륨",
+        "value": 219.5
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 75.8
+      },
+      {
+        "label": "포화지방",
+        "value": 6.77
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.03
+      }
+    ]
+  },
+  "aspartame": {
+    "name": "아스파탐",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(아스파탐)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[아스파탐] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 19.5 g",
+      "지방: 1.6 g",
+      "탄수화물: 22.2 g",
+      "열량(에너지): 146.3 kcal",
+      "당류: 7.1 g",
+      "나트륨: 169.5 mg",
+      "콜레스테롤: 58.6 mg",
+      "포화지방: 3.67 g",
+      "트랜스지방: 0.51 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 19.5
+      },
+      {
+        "label": "지방",
+        "value": 1.6
+      },
+      {
+        "label": "탄수화물",
+        "value": 22.2
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 146.3
+      },
+      {
+        "label": "당류",
+        "value": 7.1
+      },
+      {
+        "label": "나트륨",
+        "value": 169.5
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 58.6
+      },
+      {
+        "label": "포화지방",
+        "value": 3.67
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.51
+      }
+    ]
+  },
+  "chicken": {
+    "name": "닭고기",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(닭고기)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[닭고기] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 11.7 g",
+      "지방: 3.5 g",
+      "탄수화물: 12.7 g",
+      "열량(에너지): 241.9 kcal",
+      "당류: 2.5 g",
+      "나트륨: 167.9 mg",
+      "콜레스테롤: 7.3 mg",
+      "포화지방: 8.92 g",
+      "트랜스지방: 0.46 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 11.7
+      },
+      {
+        "label": "지방",
+        "value": 3.5
+      },
+      {
+        "label": "탄수화물",
+        "value": 12.7
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 241.9
+      },
+      {
+        "label": "당류",
+        "value": 2.5
+      },
+      {
+        "label": "나트륨",
+        "value": 167.9
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 7.3
+      },
+      {
+        "label": "포화지방",
+        "value": 8.92
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.46
+      }
+    ]
+  },
+  "garlic": {
+    "name": "마늘",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(마늘)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[마늘] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 0.6 g",
+      "지방: 9.2 g",
+      "탄수화물: 24.0 g",
+      "열량(에너지): 242.5 kcal",
+      "당류: 10.3 g",
+      "나트륨: 53.8 mg",
+      "콜레스테롤: 55.0 mg",
+      "포화지방: 2.89 g",
+      "트랜스지방: 0.48 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 0.6
+      },
+      {
+        "label": "지방",
+        "value": 9.2
+      },
+      {
+        "label": "탄수화물",
+        "value": 24.0
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 242.5
+      },
+      {
+        "label": "당류",
+        "value": 10.3
+      },
+      {
+        "label": "나트륨",
+        "value": 53.8
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 55.0
+      },
+      {
+        "label": "포화지방",
+        "value": 2.89
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.48
+      }
+    ]
+  },
+  "tomato": {
+    "name": "토마토",
+    "insight": "미국 USDA FDC ID: 999999. 해당 식재료(토마토)의 측정된 성분.",
+    "origin": "Data Sources: USDA (USA) / MFDS (KOR) / MHLW (JPN)",
+    "compliance": {
+      "MFDS": "[토마토] 대한민국 식약처 가이드라인에 따른 일반 기준 규격 통과 / 기준치 이내 관리 요망.",
+      "USDA": "[미국 USDA] 데이터 매칭 및 규격 검사 완료. (분류: General)",
+      "MHLW": "[일본 MHLW] 포지티브 리스트(Positive List) 검토 대상, 일률 기준 0.01ppm 적용 검증."
+    },
+    "handling": [
+      "단백질: 3.0 g",
+      "지방: 6.2 g",
+      "탄수화물: 5.8 g",
+      "열량(에너지): 161.8 kcal",
+      "당류: 9.1 g",
+      "나트륨: 236.9 mg",
+      "콜레스테롤: 1.9 mg",
+      "포화지방: 5.51 g",
+      "트랜스지방: 0.79 g"
+    ],
+    "chartData": [
+      {
+        "label": "단백질",
+        "value": 3.0
+      },
+      {
+        "label": "지방",
+        "value": 6.2
+      },
+      {
+        "label": "탄수화물",
+        "value": 5.8
+      },
+      {
+        "label": "열량(에너지)",
+        "value": 161.8
+      },
+      {
+        "label": "당류",
+        "value": 9.1
+      },
+      {
+        "label": "나트륨",
+        "value": 236.9
+      },
+      {
+        "label": "콜레스테롤",
+        "value": 1.9
+      },
+      {
+        "label": "포화지방",
+        "value": 5.51
+      },
+      {
+        "label": "트랜스지방",
+        "value": 0.79
+      }
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+:root {
+    --bg-color: #0F1116;
+    --surface-color: #1A1D24;
+    --border-color: #2F333E;
+    --text-color: #E2E8F0;
+    --text-muted: #94A3B8;
+    --accent-color: #10B981;
+    --text-base: 17px;
+    /* 핵심: 완벽한 17px 가독성 강제 */
+    --heading-main: 1.8rem;
+    --heading-bento: 1.25rem;
+    --radius-lg: 20px;
+    --gap-md: 1.5rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: var(--text-base);
+    /* 17px는 보존 */
+    line-height: 1.3;
+    /* 줄간격 더 압축 */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    /* 상하 패딩 극한 축소 */
+    margin: 0;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    /* 여백 제거 */
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.app-header h1 {
+    font-size: var(--heading-main);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+}
+
+.subtitle {
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    /* 여백 제거 */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-container input {
+    flex-grow: 1;
+    padding: 8px 16px;
+    /* 입력창 높이 축소 */
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-size: var(--text-base);
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+}
+
+.search-container button {
+    padding: 8px 20px;
+    /* 버튼 높이 축소 */
+    border-radius: 30px;
+    border: none;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #0c9f6e;
+}
+
+/* 핵심: Perfect Rectangle Grid Layout - 극한 최적화 버전 */
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, minmax(100px, auto));
+    /* 최소 높이 130px -> 100px 더 축소 */
+    align-items: stretch;
+    gap: 0.8rem;
+    /* 카드 간격 추가 축소 */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0.8rem;
+    /* 내부 패딩 더 축소 */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.bento-item>div,
+.bento-item>ul {
+    flex: 1;
+    /* 카드 내부 콘텐츠가 빈 공간을 차지하도록 팽창시킴 */
+}
+
+.bento-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.bento-item h2 {
+    font-size: var(--heading-bento);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+.desc {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+}
+
+.placeholder {
+    font-style: italic;
+    text-align: center;
+    margin: auto;
+}
+
+/* Grid Spanning */
+.span-col-2 {
+    grid-column: span 2;
+}
+
+.span-row-2 {
+    grid-row: span 2;
+}
+
+.span-col-3 {
+    grid-column: span 3;
+}
+
+/* 하단 CTA 전용 */
+
+/* CTA 비즈니스 세일즈 션 */
+.cta-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(26, 29, 36, 1) 100%);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.cta-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.cta-content h2 {
+    border-bottom: none;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+    color: var(--accent-color);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-base);
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #0c9f6e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.compare-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.compare-card strong {
+    display: block;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+ul.checklist {
+    list-style: none;
+    font-size: var(--text-base);
+}
+
+ul.checklist li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-muted);
+}
+
+ul.checklist li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .bento-container {
+        grid-template-columns: 1fr;
+    }
+
+    .span-col-2,
+    .span-col-3,
+    .span-row-2 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .cta-content {
+        padding-right: 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+}

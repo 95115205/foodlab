@@ -1,0 +1,21 @@
+{
+  "name": "흙에살다 식재료 시스템 (Living in Soil)",
+  "short_name": "흙에살다 Data",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0F1116",
+  "theme_color": "#10B981",
+  "description": "식재료 품질 분석 및 컴플라이언스 전문가형 PWA 애플리케이션",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "foodlab-frontend",
+    "version": "1.0.0",
+    "description": "흙에살다 Frontend Application with Obfuscation",
+    "main": "app.js",
+    "scripts": {
+        "build": "webpack --mode production"
+    },
+    "devDependencies": {
+        "webpack": "^5.82.1",
+        "webpack-cli": "^5.1.1",
+        "webpack-obfuscator": "^3.5.1"
+    }
+}
