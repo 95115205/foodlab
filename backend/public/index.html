@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>흙에살다 | O-L-S 전문가용 식재료 분석</title>
     <link rel="stylesheet" href="style.css">
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    <!-- Chart.js 라이브러리 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -23,23 +21,28 @@
         </div>
     </header>
 
-    <!-- Bento-Grid Layout: 직관적이고 스크롤이 최소화되는 인터페이스 -->
+    <!-- Top Row: Core Insight + 다중 식재료 선택 (가로 배열) -->
     <main class="bento-container" id="app-container">
 
-        <!-- 1. 통계 및 요약 (가장 중요한 인사이트) -->
-        <section class="bento-item highlight span-row-2">
+        <!-- 1. 통계 및 요약 (종합 평가) -->
+        <section class="bento-item highlight" id="section-insight">
             <h2>💡 Core Insight (종합 평가)</h2>
             <div id="core-insight">
                 <p class="desc placeholder">식재료를 검색하시면, 세계 최고의 정밀한 데이터베이스가 즉시 분석해드립니다.</p>
             </div>
         </section>
 
+        <!-- 1-B. 다중 식재료 선택 (종합 평가 오른쪽에 가로 배열) -->
+        <section class="bento-item" id="section-multi-select" style="display:none;">
+            <h2>🔍 검색된 다중 식재료</h2>
+            <p class="desc mb-sm">원하시는 구체적 품종/상태를 선택해주세요.</p>
+            <ul id="multi-select-list" class="multi-list"></ul>
+        </section>
+
         <!-- 2. 공공 파이프라인 데이터 비교 (규격) -->
         <section class="bento-item span-col-2 highlight-origin">
             <h2>🌍 국제 규격 및 법적 기준 비교</h2>
-            <div class="compare-grid" id="origin-comparison">
-                <!-- Data will be injected via app.js -->
-            </div>
+            <div class="compare-grid" id="origin-comparison"></div>
         </section>
 
         <!-- 3. 관능 및 영양 지표 9대 성분 막대 차트 -->
@@ -66,32 +69,29 @@
             </div>
         </section>
 
-        <!-- 6. 전문가 솔루션 (CTA) - 리드 마그넷 비즈니스 연동부 -->
+        <!-- 6. ⚠️ 위해요소분석 (CODEX/FAO/NACMCF) — 신규 추가 -->
+        <section class="bento-item span-col-3 hazard-section" id="section-hazard" style="display:none;">
+            <h2>⚠️ 위해요소분석 (CODEX / FAO / NACMCF)</h2>
+            <div class="hazard-grid" id="hazard-grid">
+                <!-- JS에서 동적 렌더링 -->
+            </div>
+        </section>
+
+        <!-- 7. 전문가 솔루션 (CTA) - 리드 마그넷 -->
         <section class="bento-item span-col-3 cta-section">
             <div class="cta-content">
                 <h2>📈 비즈니스 스케일업 솔루션</h2>
                 <p class="desc">식품 원가 최적화 및 완벽한 규격 관리를 위한 전문가 템플릿과 컨설팅을 만나보세요.</p>
             </div>
             <div class="cta-buttons">
-                <a href="#" class="btn-primary" onclick="alert('결제 페이지로 이동합니다.')">📊 식재료 원가 분석 템플릿 (단일 구매)</a>
-                <a href="#" class="btn-secondary" onclick="alert('맞춤형 1:1 컨설팅 폼이 열립니다.')">👨‍🔬 맞춤형 위생/HACCP 컨설팅 문의</a>
+                <a href="https://www.xn--2j1by5xd2d93v.kr/29" target="_blank" rel="noopener" class="btn-primary">📊 식재료
+                    원가 분석 템플릿 (단일 구매)</a>
+                <a href="https://www.xn--2j1by5xd2d93v.kr/31" target="_blank" rel="noopener" class="btn-secondary">👨‍🔬
+                    맞춤형 위생/HACCP 컨설팅 문의</a>
             </div>
         </section>
 
     </main>
-
-    <!-- 다중 검색 결과 선택 Modal UI (전략 B) -->
-    <div id="selection-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>🔍 검색된 다중 식재료 결과</h3>
-            <p class="desc mb-10" style="margin-bottom:15px; font-size:15px;">입력하신 검색어에 대해 여러 종류의 스펙이 감지되었습니다. 원하시는 구체적
-                품종/상태를 선택해주세요.</p>
-            <ul id="modal-list" class="modal-list">
-                <!-- 동적으로 리스트 아이템 삽입 -->
-            </ul>
-            <button id="modal-close-btn" class="modal-close">닫기 (기본값 보기)</button>
-        </div>
-    </div>
 
     <script src="app.js"></script>
 </body>
