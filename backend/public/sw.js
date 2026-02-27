@@ -1,9 +1,9 @@
-const CACHE_NAME = 'foodlab-cache-v1';
+const CACHE_NAME = 'foodlab-cache-v2';
 const urlsToCache = [
     '/',
     '/index.html',
     '/style.css',
-    '/dist/app.bundle.js',
+    '/app.js',
     '/manifest.json'
 ];
 
