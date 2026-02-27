@@ -117,7 +117,7 @@ class OpenApiService
       "Food Additives" => "식품첨가물"
     }
 
-    translated = text.clone
+    translated = text.dup
     dictionary.each do |en_word, ko_word|
       translated.gsub!(/#{Regexp.escape(en_word)}/i, ko_word)
     end
