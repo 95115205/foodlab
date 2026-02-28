@@ -18,11 +18,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                // 캐시에 있으면 반환, 없으면 네트워크 요청
-                return response || fetch(event.request);
-            })
+        fetch(event.request).catch(() => caches.match(event.request))
     );
 });
 

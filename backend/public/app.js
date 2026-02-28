@@ -81,8 +81,13 @@ function showInlineMultiSelect(results) {
     results.forEach((item, idx) => {
         const li = document.createElement('li');
         const fdcText = item.fdcId !== "N/A" ? `FDC: ${item.fdcId}` : '';
+        const sourceBadge = item.dataSource ? `<span class="source-badge">${item.dataSource}</span>` : '';
+
         li.innerHTML = `
-            <strong>${item.description || item.name}</strong>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <strong>${item.description || item.name}</strong>
+                ${sourceBadge}
+            </div>
             <span>${fdcText} · 정확도 판별 기반</span>
         `;
         if (idx === 0) li.classList.add('selected');
@@ -192,7 +197,10 @@ function renderHazards(hazards) {
         const rows = (items || []).map(i => `
             <div class="hazard-item">
                 <div class="hazard-item-name">${i.name}</div>
-                <span class="hazard-item-risk risk-${riskClass(i.risk)}">${i.risk}</span>
+                <div style="margin: 6px 0;">
+                    <span class="hazard-item-risk risk-${riskClass(i.risk)}">위험: ${i.risk}</span>
+                    ${i.probability ? `<span class="hazard-item-risk" style="background: rgba(100,116,139,0.2); color: #cbd5e1; margin-left: 4px;">발생: ${i.probability}</span>` : ''}
+                </div>
                 <div class="hazard-item-ctrl">관리: ${i.control}</div>
             </div>
         `).join('');

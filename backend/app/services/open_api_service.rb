@@ -166,7 +166,7 @@ class OpenApiService
                   end
 
     # CODEX/FAO/NACMCF 위해요소분석
-    hazards = analyze_hazards(raw_query, en_query)
+    hazards = analyze_hazards(raw_query, en_query, usda ? usda["foodCategory"] : nil)
 
     {
       name: raw_query.upcase,
@@ -188,8 +188,8 @@ class OpenApiService
   # ==========================================
   # CODEX / FAO / NACMCF 기반 위해요소분석
   # ==========================================
-  def analyze_hazards(raw_query, en_query)
-    category = detect_food_category(en_query)
+  def analyze_hazards(raw_query, en_query, usda_category = nil)
+    category = detect_food_category(en_query, usda_category)
     {
       category: category.to_s,
       microbial: microbial_hazards(category),
@@ -199,7 +199,7 @@ class OpenApiService
     }
   end
 
-  def detect_food_category(query)
+  def detect_food_category(query, usda_category = nil)
     q = query.to_s.strip.downcase
     mapping = {
       %w[apple strawberry grape tomato potato carrot onion] => :농산물,
@@ -211,127 +211,138 @@ class OpenApiService
       %w[ginseng green\ tea] => :한약재
     }
     mapping.each { |keys, cat| return cat if keys.include?(q) }
+
+    if usda_category
+      cat_str = usda_category.to_s.downcase
+      return :농산물 if cat_str.match?(/fruit|vegetable|produce/i)
+      return :축산물 if cat_str.match?(/meat|beef|pork|poultry/i)
+      return :수산물 if cat_str.match?(/fish|seafood/i)
+      return :곡류_가공원료 if cat_str.match?(/grain|cereal|bread|flour/i)
+      return :식품첨가물 if cat_str.match?(/additive|sweetener/i)
+      return :향신료 if cat_str.match?(/spice|herb/i)
+    end
+
     :기타
   end
 
   def microbial_hazards(category)
     db = {
       농산물: [
-        { name: "살모넬라(Salmonella)", risk: "높음", control: "세척·소독, 냉장보관(5°C 이하)" },
-        { name: "대장균 O157:H7(E. coli)", risk: "중간", control: "GAP 인증, 교차오염 방지" },
-        { name: "리스테리아(L. monocytogenes)", risk: "중간", control: "냉장 유통온도 관리" },
-        { name: "곰팡이(Aspergillus)", risk: "낮음", control: "수분활성도 관리, 건조저장" }
+        { name: "살모넬라(Salmonella)", risk: "높음", probability: "중간", control: "세척·소독, 냉장보관(5°C 이하)" },
+        { name: "대장균 O157:H7(E. coli)", risk: "중간", probability: "낮음", control: "GAP 인증, 교차오염 방지" },
+        { name: "리스테리아(L. monocytogenes)", risk: "중간", probability: "낮음", control: "냉장 유통온도 관리" },
+        { name: "곰팡이(Aspergillus)", risk: "낮음", probability: "높음", control: "수분활성도 관리, 건조저장" }
       ],
       축산물: [
-        { name: "살모넬라(Salmonella)", risk: "높음", control: "가열처리 75°C 1분 이상" },
-        { name: "캠필로박터(Campylobacter)", risk: "높음", control: "교차오염 방지, 완전가열" },
-        { name: "대장균 O157:H7", risk: "높음", control: "중심온도 72°C 이상 가열" },
-        { name: "클로스트리디움(C. perfringens)", risk: "중간", control: "신속냉각(2시간 내 10°C)" }
+        { name: "살모넬라(Salmonella)", risk: "높음", probability: "중간", control: "가열처리 75°C 1분 이상" },
+        { name: "캠필로박터(Campylobacter)", risk: "높음", probability: "높음", control: "교차오염 방지, 완전가열" },
+        { name: "대장균 O157:H7", risk: "높음", probability: "낮음", control: "중심온도 72°C 이상 가열" },
+        { name: "클로스트리디움(C. perfringens)", risk: "중간", probability: "중간", control: "신속냉각(2시간 내 10°C)" }
       ],
       수산물: [
-        { name: "비브리오(V. parahaemolyticus)", risk: "높음", control: "냉장유통, 가열섭취" },
-        { name: "아니사키스(Anisakis)", risk: "중간", control: "-20°C 24시간 냉동처리" },
-        { name: "노로바이러스(Norovirus)", risk: "중간", control: "85°C 1분 이상 가열" },
-        { name: "리스테리아(L. monocytogenes)", risk: "중간", control: "냉훈제품 온도관리" }
+        { name: "비브리오(V. parahaemolyticus)", risk: "높음", probability: "중간", control: "냉장유통, 가열섭취" },
+        { name: "아니사키스(Anisakis)", risk: "중간", probability: "높음", control: "-20°C 24시간 냉동처리" },
+        { name: "노로바이러스(Norovirus)", risk: "중간", probability: "중간", control: "85°C 1분 이상 가열" },
+        { name: "리스테리아(L. monocytogenes)", risk: "중간", probability: "낮음", control: "냉훈제품 온도관리" }
       ],
       곡류_가공원료: [
-        { name: "바실러스 세레우스(B. cereus)", risk: "중간", control: "조리 후 신속냉각" },
-        { name: "곰팡이독소(아플라톡신)", risk: "높음", control: "수분 15% 이하 저장" },
-        { name: "살모넬라(Salmonella)", risk: "낮음", control: "가열가공처리" }
+        { name: "바실러스 세레우스(B. cereus)", risk: "중간", probability: "중간", control: "조리 후 신속냉각" },
+        { name: "곰팡이독소(아플라톡신)", risk: "높음", probability: "낮음", control: "수분 15% 이하 저장" },
+        { name: "살모넬라(Salmonella)", risk: "낮음", probability: "낮음", control: "가열가공처리" }
       ],
       식품첨가물: [
-        { name: "미생물 오염", risk: "낮음", control: "GMP 기준 제조, 순도 관리" }
+        { name: "미생물 오염", risk: "낮음", probability: "낮음", control: "GMP 기준 제조, 순도 관리" }
       ],
       향신료: [
-        { name: "살모넬라(Salmonella)", risk: "높음", control: "방사선 조사, 증기살균" },
-        { name: "곰팡이독소(아플라톡신/오크라톡신)", risk: "높음", control: "수분 관리, 건조저장" },
-        { name: "바실러스 세레우스(B. cereus)", risk: "중간", control: "건조도 관리" }
+        { name: "살모넬라(Salmonella)", risk: "높음", probability: "낮음", control: "방사선 조사, 증기살균" },
+        { name: "곰팡이독소(아플라톡신/오크라톡신)", risk: "높음", probability: "중간", control: "수분 관리, 건조저장" },
+        { name: "바실러스 세레우스(B. cereus)", risk: "중간", probability: "중간", control: "건조도 관리" }
       ],
       한약재: [
-        { name: "곰팡이(Aspergillus)", risk: "높음", control: "건조저장, 수분 관리" },
-        { name: "대장균군(Coliform)", risk: "중간", control: "위생관리, 세척공정" },
-        { name: "일반세균", risk: "중간", control: "위생적 취급, 건조" }
+        { name: "곰팡이(Aspergillus)", risk: "높음", probability: "높음", control: "건조저장, 수분 관리" },
+        { name: "대장균군(Coliform)", risk: "중간", probability: "중간", control: "위생관리, 세척공정" },
+        { name: "일반세균", risk: "중간", probability: "높음", control: "위생적 취급, 건조" }
       ]
     }
-    db[category] || [{ name: "일반 미생물", risk: "중간", control: "위생적 취급 및 보관" }]
+    db[category] || [{ name: "일반 미생물", risk: "중간", probability: "중간", control: "위생적 취급 및 보관" }]
   end
 
   def chemical_hazards(category)
     db = {
       농산물: [
-        { name: "잔류농약", risk: "높음", control: "PLS(0.01ppm) 적용, GAP 인증" },
-        { name: "중금속(납·카드뮴)", risk: "중간", control: "토양검사, 원산지 관리" },
-        { name: "질산염(NO₃⁻)", risk: "낮음", control: "시비량 관리" }
+        { name: "잔류농약", risk: "높음", probability: "중간", control: "PLS(0.01ppm) 적용, GAP 인증" },
+        { name: "중금속(납·카드뮴)", risk: "중간", probability: "낮음", control: "토양검사, 원산지 관리" },
+        { name: "질산염(NO₃⁻)", risk: "낮음", probability: "중간", control: "시비량 관리" }
       ],
       축산물: [
-        { name: "잔류항생물질", risk: "높음", control: "MRL 기준, 휴약기간 준수" },
-        { name: "성장촉진제(β-작용제)", risk: "높음", control: "사용금지 물질 검사" },
-        { name: "다이옥신/PCBs", risk: "낮음", control: "사료관리, 환경모니터링" }
+        { name: "잔류항생물질", risk: "높음", probability: "중간", control: "MRL 기준, 휴약기간 준수" },
+        { name: "성장촉진제(β-작용제)", risk: "높음", probability: "낮음", control: "사용금지 물질 검사" },
+        { name: "다이옥신/PCBs", risk: "낮음", probability: "매우 낮음", control: "사료관리, 환경모니터링" }
       ],
       수산물: [
-        { name: "수은(메틸수은)", risk: "높음", control: "대형어 섭취량 관리(0.4ppm)" },
-        { name: "히스타민", risk: "높음", control: "냉장유통(200mg/kg 이하)" },
-        { name: "잔류항생물질", risk: "중간", control: "양식 관리, MRL 기준" }
+        { name: "수은(메틸수은)", risk: "높음", probability: "중간", control: "대형어 섭취량 관리(0.4ppm)" },
+        { name: "히스타민", risk: "높음", probability: "중간", control: "냉장유통(200mg/kg 이하)" },
+        { name: "잔류항생물질", risk: "중간", probability: "낮음", control: "양식 관리, MRL 기준" }
       ],
       곡류_가공원료: [
-        { name: "잔류농약(글리포세이트)", risk: "중간", control: "수입 곡물 검사" },
-        { name: "곰팡이독소(아플라톡신 B1)", risk: "높음", control: "10μg/kg 이하" },
-        { name: "중금속(카드뮴)", risk: "낮음", control: "쌀 카드뮴 0.2mg/kg 이하" }
+        { name: "잔류농약(글리포세이트)", risk: "중간", probability: "낮음", control: "수입 곡물 검사" },
+        { name: "곰팡이독소(아플라톡신 B1)", risk: "높음", probability: "낮음", control: "10μg/kg 이하" },
+        { name: "중금속(카드뮴)", risk: "낮음", probability: "낮음", control: "쌀 카드뮴 0.2mg/kg 이하" }
       ],
       식품첨가물: [
-        { name: "순도 불량(불순물)", risk: "중간", control: "식품첨가물공전 순도기준" },
-        { name: "ADI 초과 사용", risk: "중간", control: "사용기준 준수, 1일섭취허용량 관리" }
+        { name: "순도 불량(불순물)", risk: "중간", probability: "낮음", control: "식품첨가물공전 순도기준" },
+        { name: "ADI 초과 사용", risk: "중간", probability: "낮음", control: "사용기준 준수, 1일섭취허용량 관리" }
       ],
       향신료: [
-        { name: "잔류농약", risk: "높음", control: "PLS 적용, 수입검사" },
-        { name: "곰팡이독소(아플라톡신)", risk: "높음", control: "총아플라톡신 15μg/kg 이하" },
-        { name: "중금속(납)", risk: "중간", control: "납 2.0mg/kg 이하" }
+        { name: "잔류농약", risk: "높음", probability: "중간", control: "PLS 적용, 수입검사" },
+        { name: "곰팡이독소(아플라톡신)", risk: "높음", probability: "낮음", control: "총아플라톡신 15μg/kg 이하" },
+        { name: "중금속(납)", risk: "중간", probability: "낮음", control: "납 2.0mg/kg 이하" }
       ],
       한약재: [
-        { name: "잔류농약", risk: "높음", control: "한약재 잔류농약 기준 적용" },
-        { name: "중금속(납·수은·카드뮴·비소)", risk: "높음", control: "대한약전 기준" },
-        { name: "곰팡이독소(아플라톡신)", risk: "중간", control: "건조·저장 관리" }
+        { name: "잔류농약", risk: "높음", probability: "높음", control: "한약재 잔류농약 기준 적용" },
+        { name: "중금속(납·수은·카드뮴·비소)", risk: "높음", probability: "중간", control: "대한약전 기준" },
+        { name: "곰팡이독소(아플라톡신)", risk: "중간", probability: "낮음", control: "건조·저장 관리" }
       ]
     }
-    db[category] || [{ name: "일반 이화학적 위해", risk: "중간", control: "성분 분석 및 관리" }]
+    db[category] || [{ name: "일반 이화학적 위해", risk: "중간", probability: "낮음", control: "성분 분석 및 관리" }]
   end
 
   def physical_hazards(category)
     db = {
       농산물: [
-        { name: "토석/모래", risk: "중간", control: "세척·선별공정" },
-        { name: "곤충/해충 파편", risk: "낮음", control: "방충관리, 선별" }
+        { name: "토석/모래", risk: "중간", probability: "높음", control: "세척·선별공정" },
+        { name: "곤충/해충 파편", risk: "낮음", probability: "중간", control: "방충관리, 선별" }
       ],
       축산물: [
-        { name: "뼈 파편(Bone)", risk: "높음", control: "발골공정 관리, 금속검출기" },
-        { name: "금속 이물", risk: "높음", control: "금속검출기/X-ray 검사" },
-        { name: "주사바늘 파편", risk: "중간", control: "수의 관리, X-ray 검출" }
+        { name: "뼈 파편(Bone)", risk: "높음", probability: "중간", control: "발골공정 관리, 금속검출기" },
+        { name: "금속 이물", risk: "높음", probability: "낮음", control: "금속검출기/X-ray 검사" },
+        { name: "주사바늘 파편", risk: "중간", probability: "낮음", control: "수의 관리, X-ray 검출" }
       ],
       수산물: [
-        { name: "뼈/가시(Bone)", risk: "높음", control: "발골·필렛 공정 관리" },
-        { name: "금속 이물", risk: "중간", control: "금속검출기" },
-        { name: "플라스틱/비닐 파편", risk: "중간", control: "포장재 관리" }
+        { name: "뼈/가시(Bone)", risk: "높음", probability: "높음", control: "발골·필렛 공정 관리" },
+        { name: "금속 이물", risk: "중간", probability: "낮음", control: "금속검출기" },
+        { name: "플라스틱/비닐 파편", risk: "중간", probability: "중간", control: "포장재 관리" }
       ],
       곡류_가공원료: [
-        { name: "금속 이물", risk: "중간", control: "금속검출기·자석선별기" },
-        { name: "돌/유리 파편", risk: "중간", control: "비중선별기, 이물검출기" },
-        { name: "곤충 파편", risk: "낮음", control: "방충관리, 동적선별" }
+        { name: "금속 이물", risk: "중간", probability: "낮음", control: "금속검출기·자석선별기" },
+        { name: "돌/유리 파편", risk: "중간", probability: "낮음", control: "비중선별기, 이물검출기" },
+        { name: "곤충 파편", risk: "낮음", probability: "낮음", control: "방충관리, 동적선별" }
       ],
       식품첨가물: [
-        { name: "이물 혼입", risk: "낮음", control: "GMP 기준 제조환경 관리" }
+        { name: "이물 혼입", risk: "낮음", probability: "매우 낮음", control: "GMP 기준 제조환경 관리" }
       ],
       향신료: [
-        { name: "곤충 파편/배설물", risk: "높음", control: "FDA 결함기준(DAL) 적용" },
-        { name: "금속 이물", risk: "중간", control: "금속검출기" },
-        { name: "토석/모래", risk: "중간", control: "세척·선별공정" }
+        { name: "곤충 파편/배설물", risk: "높음", probability: "중간", control: "FDA 결함기준(DAL) 적용" },
+        { name: "금속 이물", risk: "중간", probability: "낮음", control: "금속검출기" },
+        { name: "토석/모래", risk: "중간", probability: "높음", control: "세척·선별공정" }
       ],
       한약재: [
-        { name: "이물질(토석/모래)", risk: "중간", control: "선별·세척공정" },
-        { name: "곤충/해충 파편", risk: "중간", control: "방충관리, 건조저장" },
-        { name: "금속 이물", risk: "낮음", control: "금속검출기" }
+        { name: "이물질(토석/모래)", risk: "중간", probability: "높음", control: "선별·세척공정" },
+        { name: "곤충/해충 파편", risk: "중간", probability: "중간", control: "방충관리, 건조저장" },
+        { name: "금속 이물", risk: "낮음", probability: "낮음", control: "금속검출기" }
       ]
     }
-    db[category] || [{ name: "일반 물리적 이물", risk: "중간", control: "이물검출 관리" }]
+    db[category] || [{ name: "일반 물리적 이물", risk: "중간", probability: "낮음", control: "이물검출 관리" }]
   end
 
   # ==========================================
