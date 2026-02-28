@@ -61,25 +61,80 @@ class OpenApiService
     query_str = query.to_s.strip.downcase
 
     dictionary = {
+      # 과일류 (Fruits)
       "사과" => "apple", "りんご" => "apple", "リンゴ" => "apple",
+      "배" => "pear", "바나나" => "banana", "오렌지" => "orange",
+      "레몬" => "lemon", "라임" => "lime", "자몽" => "grapefruit",
+      "딸기" => "strawberry", "いちご" => "strawberry", "イチゴ" => "strawberry",
+      "포도" => "grape", "블루베리" => "blueberry", "체리" => "cherry",
+      "복숭아" => "peach", "자두" => "plum", "살구" => "apricot",
+      "망고" => "mango", "파인애플" => "pineapple", "키위" => "kiwi",
+      "수박" => "watermelon", "참외" => "melon", "멜론" => "melon",
+      "감" => "persimmon", "귤" => "tangerine", "한라봉" => "tangerine",
+      "석류" => "pomegranate", "무화과" => "fig", "아보카도" => "avocado",
+      "코코넛" => "coconut",
+
+      # 채소류 (Vegetables)
+      "토마토" => "tomato", "감자" => "potato", "고구마" => "sweet potato",
+      "당근" => "carrot", "양파" => "onion", "마늘" => "garlic",
+      "파" => "green onion", "대파" => "green onion", "쪽파" => "green onion",
+      "오이" => "cucumber", "호박" => "squash", "애호박" => "zucchini",
+      "가지" => "eggplant", "브로콜리" => "broccoli", "콜리플라워" => "cauliflower",
+      "양배추" => "cabbage", "배추" => "napa cabbage", "시금치" => "spinach",
+      "상추" => "lettuce", "깻잎" => "perilla leaf", "셀러리" => "celery",
+      "무" => "radish", "비트" => "beet", "아스파라거스" => "asparagus",
+      "버섯" => "mushroom", "표고버섯" => "shiitake mushroom",
+      "팽이버섯" => "enoki mushroom", "양송이" => "button mushroom",
+      "고추" => "chili pepper", "피망" => "bell pepper", "파프리카" => "bell pepper",
+      "부추" => "chive", "미나리" => "water parsley", "콩나물" => "bean sprouts",
+      "숙주" => "mung bean sprouts", "옥수수" => "corn", "연근" => "lotus root",
+      "우엉" => "burdock root", "생강" => "ginger",
+
+      # 축산물 (Meat)
       "소고기" => "beef", "牛肉" => "beef",
       "돼지고기" => "pork", "豚肉" => "pork",
-      "딸기" => "strawberry", "いちご" => "strawberry", "イチゴ" => "strawberry",
-      "닭고기" => "chicken",
-      "포도" => "grape",
-      "토마토" => "tomato",
-      "마늘" => "garlic",
-      "후추" => "pepper",
-      "바질" => "basil",
-      "시나몬" => "cinnamon", "계피" => "cinnamon",
-      "아스파탐" => "aspartame",
-      "사카린" => "saccharin",
+      "닭고기" => "chicken", "오리고기" => "duck",
+      "양고기" => "lamb", "칠면조" => "turkey",
+      "계란" => "egg", "달걀" => "egg", "오리알" => "duck egg",
+      "우유" => "milk", "치즈" => "cheese", "버터" => "butter",
+      "요거트" => "yogurt", "요구르트" => "yogurt",
+
+      # 수산물 (Seafood)
+      "연어" => "salmon", "새우" => "shrimp", "고등어" => "mackerel",
+      "참치" => "tuna", "오징어" => "squid", "문어" => "octopus",
+      "조개" => "clam", "굴" => "oyster", "홍합" => "mussel",
+      "게" => "crab", "랍스터" => "lobster", "가리비" => "scallop",
+      "멸치" => "anchovy", "꽁치" => "saury", "갈치" => "hairtail",
+      "광어" => "flatfish", "우럭" => "rockfish", "도미" => "sea bream",
+      "방어" => "yellowtail", "대구" => "cod", "명태" => "pollock",
+      "미역" => "seaweed", "김" => "dried seaweed", "다시마" => "kelp",
+
+      # 곡류/가공원료 (Grains)
+      "쌀" => "rice", "현미" => "brown rice", "찹쌀" => "glutinous rice",
+      "밀가루" => "wheat flour", "강력분" => "bread flour",
+      "중력분" => "all-purpose flour", "박력분" => "cake flour",
+      "보리" => "barley", "귀리" => "oat", "오트밀" => "oatmeal",
+      "메밀" => "buckwheat", "호밀" => "rye",
+      "콩" => "soybean", "두부" => "tofu", "된장" => "soybean paste",
+      "간장" => "soy sauce", "고추장" => "gochujang",
+
+      # 식품첨가물 (Additives)
+      "아스파탐" => "aspartame", "사카린" => "saccharin",
       "식품첨가물" => "food additives",
-      "향신료" => "spices",
-      "밀가루" => "wheat flour",
-      "강력분" => "bread flour",
-      "중력분" => "all-purpose flour",
-      "박력분" => "cake flour"
+      "MSG" => "monosodium glutamate", "msg" => "monosodium glutamate",
+
+      # 향신료 (Spices)
+      "후추" => "pepper", "바질" => "basil",
+      "시나몬" => "cinnamon", "계피" => "cinnamon",
+      "향신료" => "spices", "카레" => "curry", "강황" => "turmeric",
+      "파슬리" => "parsley", "로즈마리" => "rosemary", "타임" => "thyme",
+      "오레가노" => "oregano", "고수" => "coriander",
+
+      # 한약재/차류
+      "인삼" => "ginseng", "홍삼" => "red ginseng",
+      "녹차" => "green tea", "작두콩" => "sword bean",
+      "대추" => "jujube", "구기자" => "goji berry",
+      "당귀" => "angelica root", "감초" => "licorice root"
     }
 
     dictionary[query_str] || query_str
@@ -202,27 +257,50 @@ class OpenApiService
   def detect_food_category(query, usda_category = nil)
     q = query.to_s.strip.downcase
     mapping = {
-      %w[apple strawberry grape tomato potato carrot onion] => :농산물,
-      %w[beef pork chicken] => :축산물,
-      %w[salmon shrimp mackerel] => :수산물,
-      %w[wheat\ flour bread\ flour all-purpose\ flour cake\ flour rice] => :곡류_가공원료,
-      %w[aspartame saccharin food\ additives] => :식품첨가물,
-      %w[pepper basil cinnamon spices garlic] => :향신료,
-      %w[ginseng green\ tea] => :한약재
+      %w[apple strawberry grape tomato potato carrot onion pear banana orange lemon lime
+         grapefruit blueberry cherry peach plum apricot mango pineapple kiwi watermelon
+         melon persimmon tangerine pomegranate fig avocado coconut sweet\ potato cucumber
+         squash zucchini eggplant broccoli cauliflower cabbage napa\ cabbage spinach lettuce
+         perilla\ leaf celery radish beet asparagus mushroom shiitake\ mushroom enoki\ mushroom
+         button\ mushroom chili\ pepper bell\ pepper chive water\ parsley bean\ sprouts
+         mung\ bean\ sprouts corn lotus\ root burdock\ root ginger] => :농산물,
+      %w[beef pork chicken duck lamb turkey egg duck\ egg milk cheese butter yogurt] => :축산물,
+      %w[salmon shrimp mackerel tuna squid octopus clam oyster mussel crab lobster scallop
+         anchovy saury hairtail flatfish rockfish sea\ bream yellowtail cod pollock
+         seaweed dried\ seaweed kelp] => :수산물,
+      %w[rice brown\ rice glutinous\ rice wheat\ flour bread\ flour all-purpose\ flour
+         cake\ flour barley oat oatmeal buckwheat rye soybean tofu soybean\ paste
+         soy\ sauce gochujang] => :곡류_가공원료,
+      %w[aspartame saccharin food\ additives monosodium\ glutamate] => :식품첨가물,
+      %w[pepper basil cinnamon spices garlic curry turmeric parsley rosemary thyme
+         oregano coriander] => :향신료,
+      %w[ginseng red\ ginseng green\ tea sword\ bean jujube goji\ berry angelica\ root
+         licorice\ root] => :한약재
     }
     mapping.each { |keys, cat| return cat if keys.include?(q) }
 
+    # USDA foodCategory 기반 자동 분류
     if usda_category
       cat_str = usda_category.to_s.downcase
-      return :농산물 if cat_str.match?(/fruit|vegetable|produce/i)
-      return :축산물 if cat_str.match?(/meat|beef|pork|poultry/i)
-      return :수산물 if cat_str.match?(/fish|seafood/i)
-      return :곡류_가공원료 if cat_str.match?(/grain|cereal|bread|flour/i)
+      return :농산물 if cat_str.match?(/fruit|vegetable|produce|legume|nut/i)
+      return :축산물 if cat_str.match?(/meat|beef|pork|poultry|egg|dairy|milk|cheese/i)
+      return :수산물 if cat_str.match?(/fish|seafood|shellfish|finfish/i)
+      return :곡류_가공원료 if cat_str.match?(/grain|cereal|bread|flour|baked|pasta|rice/i)
       return :식품첨가물 if cat_str.match?(/additive|sweetener/i)
-      return :향신료 if cat_str.match?(/spice|herb/i)
+      return :향신료 if cat_str.match?(/spice|herb|seasoning|condiment/i)
     end
 
-    :기타
+    # 한국어 원본 쿼리 기반 분류 (번역 실패 시 최후 수단)
+    raw = q
+    return :농산물 if raw.match?(/과일|채소|야채|나물|잎|뿌리|열매|감|귤|배추|무|콩나물|버섯/)
+    return :축산물 if raw.match?(/고기|육|살|계란|달걀|우유|치즈|버터|요거트|요구르트/)
+    return :수산물 if raw.match?(/어|새우|게|조개|굴|생선|회|해산물|미역|김|다시마|멸치|젓갈/)
+    return :곡류_가공원료 if raw.match?(/쌀|밀|가루|분|보리|귀리|빵|떡|면|국수|두부|된장|간장|고추장/)
+    return :식품첨가물 if raw.match?(/첨가물|감미료|색소|보존료|방부제/)
+    return :향신료 if raw.match?(/향신|허브|카레|강황|파슬리|로즈마리|타임|오레가노/)
+    return :한약재 if raw.match?(/삼|녹차|대추|구기자|당귀|감초|한약|약초/)
+
+    :농산물  # 식재료 검색 앱이므로, 기본값을 농산물로 설정
   end
 
   def microbial_hazards(category)
